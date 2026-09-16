@@ -277,7 +277,141 @@ ollama create qwen3_4b_t0.5 -f ./Modelfile
 
 ## Les principales limites des LLM
 
+Malgré leurs capacités impressionnantes, les LLM présentent des limitations importantes qu'il est essentiel de comprendre pour les utiliser efficacement
+et de manière responsable. Ces limites ne sont pas des défauts techniques temporaires, mais des contraintes fondamentales liées à la nature même de
+ces systèmes et à leur mode d'apprentissage.
+
 ### Date limite de connaissance
+
+Données d'entraînement arrêtées à une date spécifique
+
+Le modèle apprend à partir de textes disponibles jusqu'à une
+certaine date
+
+Après l'entraînement, le modèle ne peut plus apprendre de
+nouvelles informations
+
+Le modèle n'a aucune connaissance des événements postérieurs
+à sa date limite
+
+<b> Conséquences </b> Réponses obsolètes ou absence d'information sur les sujets
+récents
+
+#### Gérer la date limite de connaissance
+
+Si le modèle n'a pas accès à Internet, il ne pourra vérifier ses sources.
+
+S'il a accès à Internet, il devra correctement trouver l'information (ce qui n'est pas toujours le cas).
+
+- Fournir le contexte manquant
+    - Intégrez les informations récentes nécessaires directement dans votre prompt. Par exemple : "Sachant que l'événement X s'est produit en 2023, et que Y en a été la conséquence, comment cela s'inscrit-il dans la tendance historique de...?"
+    - Intégrez des documents via La génération augmentée de récupération (RAG) c'est une technique d'intelligence artificielle qui améliore les réponses d'un (LLM) en le connectant à des sources de données externes.
+
+- Utiliser des extensions externes
+    - Certains modèles récents peuvent accéder à des API externes ou à des moteurs de recherche pour obtenir des informations à jour. Ces fonctionnalités permettent de compléter les connaissances du modèle avec des données récentes provenant d'internet.
+
+- Limiter le périmètre
+    - Formulez vos questions pour éviter de dépendre d'événements récents. Concentrez-vous sur les principes fondamentaux, les concepts théoriques ou les événements historiques bien établis qui sont dans le périmètre de connaissance du modèle.
+
 ### Hallucinations
+
+Génération d'informations fausses mais plausibles
+
+#### Définition
+
+Les hallucinations sont des informations fausses que l'IA présente
+comme vraies. Cela arrive quand le LLM crée du contenu qui semble
+correct et bien écrit, mais qui est en réalité inexact ou complètement
+inventé.
+
+Le modèle ne "ment" pas volontairement. Il comble simplement les trous
+dans ses connaissances avec ce qui lui semble le plus probable selon ce
+qu'il a appris.
+
+#### Causes principales
+
+Plusieurs raisons expliquent les hallucinations :
+- Manques dans les données d'apprentissage
+- Questions peu claires
+- Besoin de donner une réponse même sans assez d'informations
+- Tendance à confirmer ses propres suppositions
+
+
+Hallucinations : exemples concrets
+
+- Citations inventées
+- Événements historiques fictifs
+- Fonctionnalités imaginaires
+
+#### Comment limiter les hallucinations
+
+- <b> Demander des sources </b> Incitez explicitement le modèle à citer ses sources ou à justifier sa réponse avec des références vérifiables.
+- <b> Vérifier les informations critiques </b> Ne prenez jamais pour acquises les informations importantes sans vérification externe, surtout dans des domaines spécialisés.
+- <b> Fournir un contexte précis </b> Plus vous donnez d'informations vérifiées dans votre prompt, moins le modèle aura besoin d'inventer pour combler les lacunes.
+- <b> Réduire la température </b> Utilisez une température plus basse pour favoriser les réponses plus conservatrices et réduire la créativité.
+
+Une autre stratégie efficace consiste à demander explicitement au modèle d'indiquer son niveau de certitude ou d'admettre quand il ne connaît pas la
+réponse. Des instructions comme "Si tu n'es pas certain d'une information, indique-le clairement" peuvent encourager le modèle à être plus transparent
+quant à ses limites.
+
+
 ### Biais
+
+Reproduction des biais présents dans les données d'entraînement
+
+#### Definition
+
+Un biais en intelligence artificielle (AI) survient lorsqu'un algorithme produit des résultats injustes ou erronés parce qu'il apprend à partir de données incomplètes ou de préjugés humains
+
+#### Origines
+- <b> Données d'entraînement biaisées </b> Les modèles apprennent à partir de textes
+trouvés sur internet, dans les livres et autres
+sources. Ces textes contiennent des biais
+culturels, de genre et d'autres préjugés. Le
+modèle absorbe ces biais pendant son
+apprentissage et peut les répéter dans ses
+réponses.
+- <b> Effet d'amplification </b> Les LLM ont tendance à renforcer les biais
+présents dans leurs données. Un petit
+déséquilibre peut devenir un biais important
+dans les résultats. Cela arrive parce que le
+modèle repère et renforce les modèles qu'il voit
+<b>le plus souvent.</b>
+
+Connaître ces biais est crucial pour bien utiliser
+les LLM. Cette connaissance aide à créer des
+questions qui réduisent les biais possibles et à
+juger les réponses avec attention, surtout sur des
+sujets délicats ou controversés.
+
+#### Types de biais courants
+
+- <b>Biais de sélection</b> : Il apparaît lorsque les données utilisées pour entraîner l'IA omettent des groupes entiers de la population, rendant le modèle inadapté ou injuste pour ces derniers.
+- <b>Biais historique</b> : Il se produit lorsque l'IA apprend des inégalités ou des discriminations du passé présentes dans les archives et les reproduit en les amplifiant.
+- <b>Biais d'échantillonnage</b> : Il se manifeste lorsque l'outil est alimenté par des sources trop limitées ou unilatérales (par exemple, uniquement occidentales), manquant de pertinence dans d'autres contextes culturels ou géographiques.
+- <b>Biais de confirmation</b> : Il survient lorsque les données ou les tests sont choisis de manière à confirmer les préconceptions ou les croyances préexistantes des créateurs.
+- <b>Biais de mesure</b> : Il a lieu quand on réduit la complexité d'une situation ou d'une personne à un seul critère ou chiffre, ce qui fausse l'évaluation globale.
+- <b>Biais d'automatisation</b> : Il se produit lorsque les humains font une confiance aveugle aux décisions d'une machine, en oubliant de les analyser de manière critique.
+
+#### Stratégies d'atténuation des biais
+
+- <b>Reformulation des prompts</b>
+    - Demandez explicitement des perspectives diverses et équilibrées
+    - Évitez les présupposés dans vos questions
+    - Utilisez un langage neutre et inclusif
+- <b>Instructions spécifiques</b>
+    - Demandez au modèle de présenter plusieurs perspectives
+    - Sollicitez des exemples divers et représentatifs
+    - Encouragez l'IA à reconnaître les limites de sa perspective
+- <b>Révision critique</b>
+    - Examinez les réponses avec un Sil critique
+    - Identifiez les suppositions implicites
+    - Comparez avec d'autres sources
+- <b>Intervention humaine</b>
+    - Appliquez votre jugement et expertise
+    - Demandez des avis à des personnes diverses
+    - Adaptez ou corrigez les réponses si nécessaire
+
 ### Absence de compréhension réelle
+
+Patterns statistiques sans compréhension profonde
