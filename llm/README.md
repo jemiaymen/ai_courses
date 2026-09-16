@@ -78,6 +78,17 @@ expérimentations directes.
 L'apprentissage superficiel (Shallow Learning) utilise des modèles simples à une ou deux couches qui nécessitent une intervention humaine pour trier les données, tandis que le Deep Learning utilise des réseaux de neurones profonds à plusieurs couches pour analyser les informations de manière autonome.
 
 ### ML vs DL
+- Machine Learning : Méthode où les ordinateurs apprennent à partir de données pour faire des prédictions sans être programmés explicitement pour chaque cas. Un humain doit souvent choisir et préparer les critères importants (les caractéristiques) à analyser
+
+- Deep Learning : Technique avancée qui utilise des réseaux de neurones artificiels inspirés du cerveau humain. Le système trouve lui-même les critères importants directement à partir des données brutes, sans aide humaine.
+
+- Principales différences : 
+
+    1) Volume de données : Le machine learning fonctionne bien avec des quantités de données moyennes et structurées. Le deep learning exige d'immenses volumes de données (Big Data), souvent non structurées comme des images ou des sons
+
+    2) Puissance de calcul : Le machine learning peut tourner sur un ordinateur classique (processeur CPU). Le deep learning demande une grande puissance de calcul et utilise des cartes graphiques spéciales (processeurs GPU)
+
+    3) Temps d'entraînement : Le machine learning apprend en quelques secondes ou heures. Le deep learning peut prendre des jours ou des semaines pour s'entraîner correctement
 
 
 ## L'IA générative
@@ -92,7 +103,7 @@ C'est ce qui permet à des outils comme ChatGPT ou DALL·E de produire des résu
 originaux à partir d'une simple demande en langage naturel.
 
 ## Prompt Engineering
-
+### Définition
 Le prompt engineering est l'art de créer des instructions claires pour
 obtenir de bonnes réponses d'une IA générative.
 
@@ -101,3 +112,172 @@ communication pour tirer le meilleur des systèmes d'IA.
 
 Un bon prompt guide l'IA vers la réponse que vous cherchez, en évitant les
 confusions et en améliorant la précision.
+
+### Principe "Garbage in, garbage out"
+
+L'IA inventera les informations qu'elle n'a pas. Comme elle devient de plus en plus sophistiquée, il devient de plus en plus difficile de ne pas avoir à l'esprit
+que ses réponses peuvent être erronées.
+
+Si tu laisse des blancs, L 'IA les remplira avec confiance, mem quand elle se trompe.
+
+Prompt imprécis => réponse fausse mais crédible
+
+Prompt précis => réponse fiable et 
+
+## Les LLM (large language model)
+
+Le LLM est une simulation de compréhension, pas une vraie intelligence.
+
+![LLM output](assets/llm_output.png)
+
+#### Prédiction statistique : 
+Les LLM fonctionnent comme un système qui complète vos phrases. Ils prévoient le mot suivant en analysant ce qui a déjà été écrit. Cette méthode simple leur permet de créer des textes cohérents.
+
+#### Vaste connaissance : 
+Les LLM ont analysé d'immenses volumes de textes. Cela leur permet de répondre sur presque tous les sujets, donnant l'impression qu'ils possèdent beaucoup de connaissances.
+
+### Comment fonctionne un LLM ?
+
+1) Apprentissage : Le modèle lit d'énormes quantités de textes pour comprendre comment fonctionne le langage.
+
+2) Analyse de la question : Il découpe votre question en petits morceaux de texte pour pouvoir la traiter.
+
+3) Prédiction : Il calcule quel mot a le plus de chances de venir ensuite dans la réponse.
+
+4) Réponse : Il crée un texte complet en choisissant les mots les plus appropriés les uns après les autres.
+
+![LLM fonctionnement](assets/llm_fonc.png)
+
+Les LLM fonctionnent de façon simple à comprendre : quand une phrase n'est pas finie, le modèle cherche quel mot a le plus de chances de venir après. Il
+répète ce processus pour chaque nouveau mot, créant ainsi un texte qui se tient.
+
+Le modèle ne "comprend" pas vraiment le texte comme nous. Il n'a pas de conscience ni de vraie connaissance du monde. Il repère seulement des motifs
+dans le langage et produit du texte basé sur ces motifs.
+
+![LLM output](assets/llm_3.PNG)
+
+### Prédiction : exemple concret
+
+![LLM prediction](assets/llm_prediction_exp.PNG)
+
+Prenons l'exemple de la phrase incomplète : "Paris est la capitale de...". Face à cette phrase, le modèle calcule les probabilités des différentes options
+pour la compléter. Dans ce cas, "la France" est de loin l'option la plus probable, avec environ 90% de probabilité, suivie par des alternatives comme "l'art"
+ou "la mode" avec des probabilités beaucoup plus faibles.
+
+Le modèle sélectionne généralement l'option ayant la plus haute probabilité, mais d'autres facteurs comme la <b> température </b> peuvent influencer ce choix,
+introduisant parfois plus de variété ou de créativité. Ce processus de sélection se répète pour chaque nouveau mot ou <b> token </b> généré.
+
+### Qu'est-ce qu'un token ?
+
+#### Définition
+Un token est le plus petit morceau de texte qu'un
+LLM peut traiter. Ce peut être un mot complet,
+une partie de mot, un signe de ponctuation ou
+même un espace. Pensez aux tokens comme
+aux briques de base du texte.
+
+#### Découpage
+Le modèle coupe le texte en tokens grâce à un
+outil appelé "tokenizer". Par exemple, "bonjour"
+peut devenir "bon" + "jour". Ce découpage aide le
+modèle à mieux gérer les différentes langues.
+
+
+#### Traitement
+En travaillant avec des tokens plutôt que des
+mots entiers, le modèle peut comprendre
+plusieurs langues et même des mots nouveaux
+ou rares en les découpant en morceaux qu'il
+connaît déjà.
+
+
+![LLM prediction](assets/tokens.PNG)
+
+Un token n'est pas toujours un mot entier.
+
+### Tokens : implications pratiques
+
+#### Limites de contexte
+Chaque modèle de langage a une limite de
+tokens qu'il peut traiter en même temps. Cette
+"fenêtre de contexte" comprend le prompt (ce
+que vous écrivez) et la réponse. Par exemple,
+GPT-3.5 gère environ 4096 tokens, tandis que les
+modèles plus récents peuvent traiter 100 000
+tokens ou plus.
+
+
+#### Coûts et performance
+Le nombre de tokens influence directement les
+coûts et la vitesse. Plus votre texte contient de
+tokens, plus il coûte cher à traiter et plus il prend
+du temps. Un prompt bien conçu avec moins de
+tokens vous fait économiser du temps et de
+l'argent.
+
+
+#### Limite de mémoire
+Quand un texte dépasse la limite de tokens du
+modèle, il est coupé. Cela peut faire perdre des
+informations importantes ou donner une réponse
+incomplète. Il est donc important d'optimiser vos
+prompts et de mettre les informations
+essentielles en premier.
+
+### Température (paramétre) 0 -> 2
+
+La température est un réglage important qui contrôle le niveau de créativité dans les réponses du modèle. Elle change la façon dont le modèle choisit ses
+mots, ce qui affecte la variété et la prévisibilité des réponses.
+
+
+Avec une température basse (près de 0), le modèle reste prudent et donne des réponses plus sûres et factuelles. 
+
+Avec une température haute (près de 1
+ou plus), le modèle explore plus de possibilités, donnant des réponses plus créatives mais parfois moins précises.
+
+#### Effet de la température
+
+
+Température basse (0.2) : [peu créatif]
+- Prompt : <b> "Décrivez une journée à Paris" </b>
+- Réponse : "Une journée typique à Paris commence souvent par un petitdéjeuner
+composé d'un café et d'un croissant dans un café de quartier.
+Les visiteurs peuvent ensuite explorer les monuments emblématiques
+comme la Tour Eiffel, l'Arc de Triomphe ou le musée du Louvre. Pour le
+déjeuner, on peut déguster des plats français traditionnels dans un bistrot
+local. L'après-midi est idéal pour une promenade le long de la Seine ou
+dans le jardin des Tuileries. La journée se termine généralement par un
+dîner dans un restaurant parisien."
+
+Température haute (0.9) : [très créatif] 
+- Prompt : <b> "Décrivez une journée à Paris" </b>
+- Réponse : "Paris s'éveille sous une pluie fine qui transforme les pavés en
+miroirs liquides reflétant les lumières matinales. Dans un petit café caché
+de Montmartre, un pianiste amateur joue doucement tandis que le parfum
+du café fraîchement moulu se mêle à l'odeur des pages jaunies d'un livre
+abandonné. Les passants, parapluies dansants, slaloment entre les
+flaques d'eau qui capturent momentanément le ciel gris perle. Un artiste
+de rue improvise une chanson mélancolique qui s'envole vers les toits
+d'ardoise, où les pigeons somnolents s'ébrouent paresseusement. La
+Seine murmure des secrets centenaires..."
+
+example : créer fichier Modelfile pour ollama avec ces données
+
+```
+FROM qwen3:4b
+PARAMETER temperature 0.5
+```
+
+generer le model via cli
+
+```
+ollama create qwen3_4b_t0.5 -f ./Modelfile
+```
+
+
+## Les principales limites des LLM
+
+### Date limite de connaissance
+### Hallucinations
+### Biais
+### Absence de compréhension réelle

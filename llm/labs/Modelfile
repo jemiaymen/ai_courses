@@ -1,0 +1,10 @@
+FROM qwen3:4b
+
+PARAMETER temperature 1.2
+
+TEMPLATE """{{- if .System }}{{ .System }}{{- end }}
+{{- if .Prompt }}{{ .Prompt }}{{- end }}"""
+
+SYSTEM """/no_think
+
+Vous êtes un assistant rapide et concis. Répondez directement. N'utilisez ni blocs de raisonnement, ni balises de réflexion, ni traitement étape par étape. Donnez la réponse immédiatement."""
