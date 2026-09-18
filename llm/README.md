@@ -1,5 +1,5 @@
 
-# Introduction (Engineering des prompts)
+# Engineering des prompts
 
 ## Ce que vous apprendrez dans ce module 
 
@@ -415,3 +415,133 @@ sujets délicats ou controversés.
 ### Absence de compréhension réelle
 
 Patterns statistiques sans compréhension profonde
+
+
+## Les 3 piliers d'un prompt efficace
+
+### Clarté
+
+Instructions explicites et non ambiguës
+
+#### Clarté : la base d'un bon prompt
+
+- <b>Être explicite</b>
+    - Éviter les formulations vagues
+    - Préciser exactement ce que vous attendez
+    - Ne pas supposer que le modèle comprend vos intentions implicites
+
+- <b>Spécifier les paramètres</b>
+    - Indiquer la longueur souhaitée (mots, paragraphes)
+    - Préciser le style (formel, conversationnel)
+    - Définir le niveau de détail (survol, approfondi)
+
+- <b>Cibler l'audience</b>
+    - Mentionner le public visé (débutants, experts)
+    - Adapter le niveau de technicité
+    - Préciser le contexte culturel si pertinent
+
+<b>Exemple de prompt vague</b> : "Fais un résumé."
+
+<b>Exemple de prompt clair</b> : "Explique la théorie de la relativité en 3 phrases, à un niveau accessible pour des lycéens, en utilisant des analogies simples."
+
+La clarté est particulièrement importante lorsque vous demandez des contenus techniques, des explications scientifiques ou des conseils spécialisés.
+
+Plus votre demande est précise, plus la réponse sera adaptée à vos besoins réels.
+
+### Contexte
+
+Informations de fond et données nécessaires
+
+#### L'importance du contexte
+Le contexte enrichit le prompt avec des informations d'arrière-plan essentielles qui orientent la réponse du modèle. Sans contexte suffisant, le LLM doit faire des suppositions qui peuvent ne pas correspondre à vos attentes.
+
+Un contexte adéquat permet au modèle de comprendre la situation spécifique, les contraintes particulières, et les nuances qui s'appliquent à votre demande, produisant ainsi une réponse plus pertinente et utile
+
+
+Types de contexte à fournir : 
+- <b>Informationnel</b> : données, faits, textes à analyser
+- <b>Situationnel</b> : circonstances, public, objectif
+- <b>Rôle</b> : perspective à adopter (expert, débutant)
+- <b>Technique</b> : domaine spécifique, terminologie
+- <b>Temporel</b> : contraintes de temps, événements récents
+
+<b>Exemple sans contexte</b> : "Rédige un email."
+
+<b>Exemple avec contexte</b> : "Tu es un responsable marketing qui doit rédiger un email à des clients existants pour annoncer une nouvelle fonctionnalité de votre application mobile. La fonctionnalité permet de scanner des codes QR pour obtenir des promotions. Ton objectif est d'encourager les téléchargements et de la mise à jour de l'application."
+
+### Structure
+
+Organisation logique de la demande
+
+#### Structurer efficacement vos prompts
+
+- <b>Utiliser des listes</b> : Les listes à puces ou numérotées permettent d'organiser clairement les instructions et rendent les prompts plus lisibles. Cette approche aide le modèle à identifier distinctement chaque point et réduit les risques d'omission.
+
+- <b>Créer des sections</b> :  Regrouper les instructions similaires sous des en-têtes explicites clarifie l'organisation de votre demande. Par exemple, séparer "Tâche", "Contexte" et "Format souhaité" en sections distinctes permet au modèle de mieux comprendre la structure de votre requête.
+
+- <b>Utiliser des balises</b> : Les balises comme <b>[CONTEXTE], [INSTRUCTIONS], [EXEMPLE] ou [FORMAT]</b> aident à délimiter clairement les différentes parties de votre prompt. Elles servent de repères visuels qui facilitent la compréhension de la structure de votre demande.
+
+
+<b>Exemple de prompt structuré</b> : <b>[TACHE]</b> Rédige un article de blog sur les avantages du télétravail. <b>[CONTEXTE]</b> L'entreprise est une agence de conseil qui permet à ses employés de travailler à distance 3 jours par semaine. <b>[PUBLIC CIBLE]</b> Dirigeants d'entreprises traditionnelles considérant l'adoption du télétravail. <b>[FORMAT]</b> Article de 500 mots avec : introduction, 3 avantages principaux avec sous-titres, conclusion avec appel à l'action.
+
+
+### Bon vs Mauvais prompt
+
+Ces trois piliers fondamentaux constituent la base de tout prompt efficace. 
+
+La <b>clarté</b> garantit que le modèle comprend exactement ce qu'on lui demande, sans avoir à deviner les intentions. 
+
+Le <b>contexte</b> fournit les informations d'arrière-plan nécessaires pour une réponse précise et pertinente. 
+
+La <b>structure</b> aide à organiser les instructions complexes et à guider le format de réponse souhaité.
+
+
+Lorsque ces trois éléments sont bien équilibrés, le prompt permet d'obtenir des réponses qui correspondent précisément aux attentes, minimisant ainsi les itérations et les clarifications nécessaires.
+
+#### Exemple
+
+<b>Mauvais prompt</b> : "Écris un article."
+
+<b>Problèmes</b> : 
+- Aucune précision sur le sujet 
+- Longueur non spécifiée 
+- Public cible inconnu 
+- Style et ton non définis 
+- Objectif flou
+
+<b>Résultat</b> : Réponse générique, probablement trop courte ou trop longue, qui ne correspond pas aux attentes implicites.
+
+
+<b>Bon prompt</b> : "Écris un article d'environ 200 mots, sur les bienfaits du sport, à destination d'adolescents, avec un ton motivant. Inclus une introduction accrocheuse, trois avantages principaux et une conclusion qui encourage à commencer une activité sportive dès aujourd'hui."
+
+<b>Points forts</b> :
+- Sujet clairement défini
+- Longueur précisée
+- Public cible identifié
+- Ton et style spécifiés
+- Structure demandée
+
+<b>Résultat</b> : Article ciblé, adapté au public et répondant précisément au besoin.
+
+### Amélioration progressive d'un prompt
+
+1) Version initiale
+
+- "Explique l'intelligence artificielle."
+- Réponse : Explication générique et trop longue de l'IA, couvrant de nombreux aspects mais sans profondeur.
+
+2) Ajout de précisions sur le format
+- "Explique l'intelligence artificielle en 5 points clés. Maximum 300 mots."
+- Réponse : Plus concise et organisée, mais encore trop générale et potentiellement trop technique.
+
+3) Spécification du public cible
+
+- "Explique l'intelligence artificielle à des débutants sans connaissances techniques, en 5 points clés. Maximum 300 mots."
+- Réponse : Meilleure adaptation au niveau de compréhension, mais manque encore de contexte pratique.
+
+4) Ajout d'objectif et d'exemples
+
+- "Explique l'intelligence artificielle à des débutants sans connaissances techniques, en 5 points clés. Inclus des exemples concrets d'applications quotidiennes. L'objectif est de réduire l'appréhension face à cette technologie. Maximum 300 mots."
+- Réponse : Complète, accessible, pratique et rassurante, exactement adaptée au besoin.
+
+## Challenge
